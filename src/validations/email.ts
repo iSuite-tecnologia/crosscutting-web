@@ -4,10 +4,8 @@
  * @returns Uma mensagem em caso de erro ou true como valor verificado
  * @example
  *
- * ```typescript
  * const value = validateEmail('email@teste.com');
  * console.log(value); // true
- * ```
  */
 
 export const validateEmail = (

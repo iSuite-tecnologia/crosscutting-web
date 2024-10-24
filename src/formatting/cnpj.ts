@@ -12,11 +12,6 @@
  */
 
 export const formatCnpj = (value: string | null | undefined): string => {
-  /**
-   * Expressão regular para validar um CNPJ.
-   *
-   * @internal
-   */
   const CNPJ_REGEX = /(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/;
 
   if (!value) return '';

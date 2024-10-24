@@ -4,10 +4,8 @@
  * @returns Uma mensagem em caso de erro ou true como valor verificado
  * @example
  *
- * ```typescript
  * const value = validateRequired('Anderson Saraiva');
  * console.log(value); // true
- * ```
  */
 
 export const validateRequired = (

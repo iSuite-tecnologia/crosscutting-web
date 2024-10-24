@@ -4,10 +4,8 @@
  * @returns A string formatada
  * @example
  *
- * ```typescript
  * const value = getExtension('application/pdf');
  * console.log(value); // 'PDF'
- * ```
  */
 
 export const getExtension = (value?: string | null | undefined): string => {

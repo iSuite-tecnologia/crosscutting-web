@@ -4,10 +4,8 @@
  * @returns A string formatada
  * @example
  *
- * ```typescript
  * const value = cutFirstLastName('Anderson Saraiva Lima');
  * console.log(value); // 'Anderson Lima'
- * ```
  */
 
 export const cutFirstLastName = (value: string | null | undefined): string => {

@@ -4,7 +4,7 @@ describe('validateFullName', () => {
   const message = 'Este campo precisa conter nome e sobrenome';
 
   test('Must return true when a valid full name is given as input', () => {
-    expect(validateFullName('João Silva', message)).toBe(true);
+    expect(validateFullName('Anderson Saraiva', message)).toBe(true);
   });
 
   test('Should return error message when invalid input is provided', () => {

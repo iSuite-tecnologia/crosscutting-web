@@ -3,10 +3,8 @@
  * @returns um guid aleatório
  * @example
  *
- * ```typescript
  * const value = randomId();
  * console.log(value); // '49783894-37cf-449f-9873-2820aa21622e'
- * ```
  */
 
 export const randomId = (): string => {

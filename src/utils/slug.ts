@@ -4,10 +4,8 @@
  * @returns A string formatada
  * @example
  *
- * ```typescript
  * const value = createSlug('Lorem Ipsum is simply dummy text');
  * console.log(value); // 'lorem-ipsum-is-simply-dummy-text'
- * ```
  */
 
 export const createSlug = (value: string): string => {

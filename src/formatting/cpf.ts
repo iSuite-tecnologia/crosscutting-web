@@ -12,11 +12,6 @@
  */
 
 export function formatCpf(value: string | null | undefined): string {
-  /**
-   * Expressão regular para validar um CPF.
-   *
-   * @internal
-   */
   const CPF_REGEX = /^([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})$/;
 
   if (!value) return '';

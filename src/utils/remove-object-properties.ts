@@ -3,11 +3,9 @@
  * @returns novo objeto
  * @example
  *
- * ```typescript
  * let params = { page: 1, take: 10, orderDesc: 'asc' };
  * const value = objectWithoutProperties(params, ['orderDesc']);
  * console.log(value); // { page: 1, take: 10 }
- * ```
  */
 
 export const objectWithoutProperties = (obj: any, keys: Array<string>) => {

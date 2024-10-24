@@ -4,10 +4,8 @@
  * @returns A string formatada
  * @example
  *
- * ```typescript
  * const value = createNameIcon('Anderson Saraiva');
  * console.log(value); // 'AS'
- * ```
  */
 
 export const createNameIcon = (value: string | null | undefined): string => {
