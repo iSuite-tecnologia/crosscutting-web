@@ -27,6 +27,19 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Build lib
+        run: |
+          npm install
+          npm build
+
+      - name: artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: |
+            src
+            node_modules
+
   publish:
     needs: build
     runs-on: ubuntu-latest
