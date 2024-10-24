@@ -47,8 +47,18 @@ jobs:
         env:
           HUSKY: 0
 
+      - name: Commit changes
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add .
+          git commit -m "Auto-commit changes before version bump" || echo "No changes to commit"
+
       - name: Bump version
-        run: npm version patch
+        run: npm version patch # Incrementar a versão automaticamente
+
+      - name: Push changes
+        run: git push origin main
 
       - name: Publish to npm
         run: npm publish --access public
