@@ -12,17 +12,17 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version-file: '.nvmrc'
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@isuite'
 
       - name: Install dependencies
         run: npm install
-        env:
-          HUSKY: 0
 
       - name: Run tests
         run: npm test
@@ -34,33 +34,32 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version-file: '.nvmrc'
           registry-url: 'https://registry.npmjs.org'
+          scope: '@isuite'
 
       - name: Install dependencies
         run: npm install
-        env:
-          HUSKY: 0
-
-      - name: Commit changes
-        run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
-          git add .
-          git commit -m "Auto-commit changes before version bump" || echo "No changes to commit"
-
-      - name: Bump version
-        run: npm version patch # Incrementar a versão automaticamente
-
-      - name: Push changes
-        run: git push origin main
 
       - name: Publish to npm
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+      # Create a new release on GitHub
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+        with:
+          tag_name: ${{ github.event.inputs.version }}
+          release_name: Release ${{ github.event.inputs.version }}
+          body: 'Release notes for version ${{ github.event.inputs.version }}'
+          draft: false
+          prerelease: false
