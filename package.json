@@ -1,6 +1,6 @@
 {
   "name": "@isuite/crosscutting-web",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "iSuite utility library",
   "main": "dist/index.js",
   "publishConfig": {
