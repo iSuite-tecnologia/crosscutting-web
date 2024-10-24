@@ -47,9 +47,6 @@ jobs:
         env:
           HUSKY: 0
 
-      - name: Bump version
-        run: npm release
-
       - name: Publish to npm
         run: npm publish
         env:
