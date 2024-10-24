@@ -21,6 +21,8 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        env:
+          HUSKY: 0
 
       - name: Run tests
         run: npm test
@@ -39,6 +41,11 @@ jobs:
         with:
           node-version: '18'
           registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm install
+        env:
+          HUSKY: 0
 
       - name: Publish to npm
         run: npm publish
