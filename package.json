@@ -1,6 +1,6 @@
 {
   "name": "@isuite/crosscutting-web",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "iSuite utility library",
   "main": "dist/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "docs": "typedoc --entryPoints src --out docs",
     "lint": "prettier --check .",
     "format": "prettier --write .",
-    "commit": "npm run lintfix && npm run test && git add -A . && git-cz",
+    "commit": "npm run format && npm run test && git add -A . && git-cz",
     "version": "npm version patch && git add package.json",
     "publish": "npm publish",
     "release": "standard-version"
