@@ -10,6 +10,9 @@
  * ```
  */
 
-export const validateRequired = (value: any, message: string): string | boolean => {
+export const validateRequired = (
+  value: any,
+  message: string
+): string | boolean => {
   return value === null || value === undefined || value === '' ? message : true;
 };

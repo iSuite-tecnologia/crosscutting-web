@@ -1,11 +1,19 @@
-coverage
-.babelrc
-.editorconfig
-.prettierrc
-commitlint.config
-src
-test
-.github
-.husky
+# Logs
+*.log
+npm-debug.log
+
+# Dependency directory
 node_modules
 commitlint.config.js
+
+# Runtime data
+tmp
+
+# Examples (If applicable to your project)
+examples
+
+tsconfig.json
+.DS_Store
+.dccache
+coverage
+.husky

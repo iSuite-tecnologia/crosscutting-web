@@ -4,8 +4,12 @@
   "description": "iSuite utility library",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "root": true,
   "author": "Anderson Saraiva",
   "license": "MIT",
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "prepare": "rm -rf dist && npm run build",
@@ -19,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iSuite-tecnologia/crosscutting-web"
+    "url": "git+https://github.com/iSuite-tecnologia/crosscutting-web.git"
   },
   "bugs": {
     "url": "https://github.com/iSuite-tecnologia/crosscutting-web/issues"
@@ -69,8 +73,5 @@
       "eslint --fix",
       "prettier --write"
     ]
-  },
-  "dependencies": {
-    "@isuite/crosscutting-web": "^1.0.6"
   }
 }

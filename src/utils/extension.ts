@@ -23,7 +23,8 @@ export const getExtension = (value?: string | null | undefined): string => {
     'application/vnd.ms-powerpoint': 'PPTX',
     'application/vnd.ms-excel': 'XLS',
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': 'XLSX',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'DOCX',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+      'DOCX',
     'application/x-zip-compressed': 'ZIP'
   };
 

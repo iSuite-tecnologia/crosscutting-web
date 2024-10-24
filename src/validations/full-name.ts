@@ -10,12 +10,10 @@
  * ```
  */
 
-export const validateFullName = (value: any, message: string): string | boolean => {
-  /**
-   * Expressão regular para validar um nome
-   *
-   * @internal
-   */
+export const validateFullName = (
+  value: any,
+  message: string
+): string | boolean => {
   const REGEX = /\w+\s\w+(\s\w+)*/;
 
   if (!value) return false;

@@ -10,6 +10,11 @@
  * ```
  */
 
-export const validateRequiredLength = (value: any, message: string): string | boolean => {
-  return value === undefined || value === null || value.length == 0 ? message : true;
+export const validateRequiredLength = (
+  value: any,
+  message: string
+): string | boolean => {
+  return value === undefined || value === null || value.length == 0
+    ? message
+    : true;
 };

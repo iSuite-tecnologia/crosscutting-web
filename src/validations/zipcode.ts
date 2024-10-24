@@ -10,12 +10,10 @@
  * ```
  */
 
-export const validateZipcode = (value: string, message: string): string | boolean => {
-  /**
-   * Expressão regular para validar um CEP.
-   *
-   * @internal
-   */
+export const validateZipcode = (
+  value: string,
+  message: string
+): string | boolean => {
   const REGEX = /(^[0-9]{5})-?([0-9]{3}$)/;
 
   return REGEX.test(value) || message;
