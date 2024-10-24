@@ -1,6 +1,6 @@
 {
   "name": "@isuite/crosscutting-web",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "iSuite utility library",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,6 +10,9 @@
   "engines": {
     "node": ">=16"
   },
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "prepare": "rm -rf dist && npm run build",
