@@ -30,7 +30,7 @@ jobs:
       - name: Build lib
         run: |
           npm install
-          npm build
+          npm run build
 
       - name: artifact
         uses: actions/upload-artifact@v4
