@@ -11,33 +11,67 @@
 export const validateCnpj = (value: any, message: string): string | boolean => {
   if (value === null || value === undefined || value === '') return false;
 
+  value = value.replace(/-|\.|\//g, '');
+
   if (!/^[0-9]+$/.test(value)) return message;
 
-  const cnpj = value.replace(/[^\d]+/g, '');
+  if (
+    value.length !== 14 ||
+    value === '00000000000000' ||
+    value === '11111111111111' ||
+    value === '22222222222222' ||
+    value === '33333333333333' ||
+    value === '44444444444444' ||
+    value === '55555555555555' ||
+    value === '66666666666666' ||
+    value === '77777777777777' ||
+    value === '88888888888888' ||
+    value === '99999999999999'
+  ) {
+    return message;
+  }
 
-  if (cnpj.length !== 14) return message;
+  let total = 0;
+  let index = 2;
+  let leftover = 0;
+  let verifyingDigit = 0;
+  let counter = 0;
 
-  if (/^(\d)\1+$/.test(cnpj)) return message;
+  for (counter = -12; counter <= -1; counter++) {
+    total = total + Math.abs(value.substr(Math.abs(counter) - 1, 1)) * index;
+    index === 9 ? (index = 2) : (index = index + 1);
+  }
 
-  const calculateDigit = (cnpj: string, length: number): number => {
-    let sum = 0;
-    let position = length - 7;
+  leftover = total % 11;
 
-    for (let i = length; i >= 1; i--) {
-      sum += parseInt(cnpj.charAt(length - i)) * position--;
-      if (position < 2) position = 9;
-    }
+  leftover === 0 || leftover === 1
+    ? (verifyingDigit = 0)
+    : (verifyingDigit = 11 - leftover);
 
-    const result = 11 - (sum % 11);
-    return result > 9 ? 0 : result;
-  };
+  if ('' + value.substr(12, 1) !== '' + verifyingDigit) {
+    return message;
+  }
 
-  const baseCnpj = cnpj.substring(0, 12);
-  const digit1 = calculateDigit(baseCnpj, 12);
-  const digit2 = calculateDigit(cnpj.substring(0, 13), 13);
+  index = 2;
+  total = 0;
+  leftover = 0;
+  verifyingDigit = 0;
 
-  return digit1 === parseInt(cnpj.charAt(12)) &&
-    digit2 === parseInt(cnpj.charAt(13))
-    ? true
-    : message;
+  for (counter = -13; counter <= -1; counter++) {
+    total = total + Math.abs(value.substr(Math.abs(counter) - 1, 1)) * index;
+
+    index === 9 ? (index = 2) : (index = index + 1);
+  }
+
+  leftover = total % 11;
+
+  leftover === 0 || leftover === 1
+    ? (verifyingDigit = 0)
+    : (verifyingDigit = 11 - leftover);
+
+  if ('' + value.substr(13, 1) !== '' + verifyingDigit) {
+    return message;
+  }
+
+  return true;
 };
