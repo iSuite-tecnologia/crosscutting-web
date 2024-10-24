@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "iSuite utility library",
   "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
