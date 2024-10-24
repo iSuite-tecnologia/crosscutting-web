@@ -48,7 +48,7 @@ jobs:
           HUSKY: 0
 
       - name: Bump version
-        run: npm version patch
+        run: npm release
 
       - name: Publish to npm
         run: npm publish
