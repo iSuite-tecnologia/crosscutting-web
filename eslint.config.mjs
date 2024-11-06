@@ -18,10 +18,9 @@ export default tseslint.config(
     rules: {
       'jest/no-conditional-expect': 'off',
       '@typescript-eslint/array-type': ['error', { default: 'array' }],
-      '@typescript-eslint/explicit-module-boundary-types': 'error',
-      '@typescript-eslint/no-explicit-any': 'on',
+      '@typescript-eslint/no-unused-expressions': 0,
+      '@typescript-eslint/no-explicit-any': 0,
       '@typescript-eslint/no-unused-vars': 'error',
-      '@typescript-eslint/explicit-function-return-type': 'error',
       'object-shorthand': ['error', 'always'],
       'prefer-destructuring': [
         'error',

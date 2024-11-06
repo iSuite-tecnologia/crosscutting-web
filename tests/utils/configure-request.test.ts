@@ -1,7 +1,7 @@
 import { configureRequest } from '../../src/utils/configure-request';
 
 describe('configureRequest', () => {
-  let params = {
+  const params = {
     page: 1,
     take: 10,
     orderProperty: 'name',

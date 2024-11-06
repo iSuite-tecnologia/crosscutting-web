@@ -8,7 +8,7 @@
  * console.log(value); // { page: 1, take: 10 }
  */
 
-export const objectWithoutProperties = (obj: any, keys: Array<string>) => {
+export const objectWithoutProperties = (obj: any, keys: string[]) => {
   const target: any = {};
 
   Object.keys(obj).forEach(key => {

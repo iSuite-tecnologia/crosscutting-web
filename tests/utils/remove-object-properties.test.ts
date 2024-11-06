@@ -1,7 +1,7 @@
 import { objectWithoutProperties } from '../../src/utils/remove-object-properties';
 
 describe('objectWithoutProperties', () => {
-  let params = {
+  const params = {
     page: 1,
     take: 10,
     orderProperty: 'name',
