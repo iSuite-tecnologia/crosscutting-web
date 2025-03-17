@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/iSuite-tecnologia/crosscutting-web/compare/v1.0.15...v1.1.0) (2025-03-17)
+
+
+### Features
+
+* adicionar nova validacao para telefone ([e0c453a](https://github.com/iSuite-tecnologia/crosscutting-web/commit/e0c453ab62adeb10bfb53c7f201bfaa6bfdff919))
+
 ### [1.0.15](https://github.com/iSuite-tecnologia/crosscutting-web/compare/v1.0.14...v1.0.15) (2025-03-12)
 
 ### [1.0.14](https://github.com/iSuite-tecnologia/crosscutting-web/compare/v1.0.13...v1.0.14) (2024-11-06)
