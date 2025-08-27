@@ -3,6 +3,10 @@ import { validatePhone } from '../../src/validations/phone';
 describe('validatePhone', () => {
   const message = 'Invalid phone';
 
+  it('passing null value should return null', () => {
+    expect(validatePhone(null, message)).toEqual(true);
+  });
+
   it('should return true for a valid phone in the format "(11) 97511-0119"', () => {
     const valid = '(11) 97511-0119';
     expect(validatePhone(valid, message)).toBe(true);

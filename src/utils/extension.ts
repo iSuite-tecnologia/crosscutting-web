@@ -1,13 +1,9 @@
 /**
  * Formata os tipos de arquivos
+ *
  * @param value - Valor para ser formatado
  * @returns A string formatada
- * @example
- *
- * const value = getExtension('application/pdf');
- * console.log(value); // 'PDF'
  */
-
 export const getExtension = (value?: string | null | undefined): string => {
   if (!value) return 'FILE';
 
@@ -21,9 +17,10 @@ export const getExtension = (value?: string | null | undefined): string => {
     'application/vnd.ms-powerpoint': 'PPTX',
     'application/vnd.ms-excel': 'XLS',
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': 'XLSX',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
-      'DOCX',
-    'application/x-zip-compressed': 'ZIP'
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'DOCX',
+    'application/x-zip-compressed': 'ZIP',
+    'application/zip': 'ZIP',
+    'application/x-compressed': 'RAR'
   };
 
   return acronym[value] || 'FILE';

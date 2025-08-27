@@ -2,24 +2,38 @@ import { formatCnpj } from '../../src/formatting/cnpj';
 
 describe('formatCnpj', () => {
   it('should return formatted CNPJ', () => {
-    const result = formatCnpj('01234567890123');
-    expect(result).toEqual('01.234.567/8901-23');
+    expect(formatCnpj('01234567890123')).toEqual('01.234.567/8901-23');
+    expect(formatCnpj('62697504000160')).toEqual('62.697.504/0001-60');
   });
 
-  it('should throw an error for invalid CNPJ', () => {
-    expect('123456789012345').toEqual('123456789012345');
-    expect('123.123.123-12').toEqual('123.123.123-12');
-    expect('123').toEqual('123');
-    expect('12345678901').toEqual('12345678901');
+  it('should return original value for invalid CNPJ strings', () => {
+    expect(formatCnpj('123.123.123-12')).toEqual('123.123.123-12');
+    expect(formatCnpj('123')).toEqual('123'); // too short
+    expect(formatCnpj('12345678901')).toEqual('12345678901'); // 11 digits
+    expect(formatCnpj('abcdefghijklmno')).toEqual('abcdefghijklmno'); // non-numeric
+    expect(formatCnpj('12.345.678/9012-34')).toEqual('12.345.678/9012-34'); // already formatted
   });
 
   it('should return empty string for null value', () => {
-    const result = formatCnpj(null);
-    expect(result).toEqual('');
+    expect(formatCnpj(null)).toEqual('');
   });
 
   it('should return empty string for undefined value', () => {
-    const result = formatCnpj(undefined);
-    expect(result).toEqual('');
+    expect(formatCnpj(undefined)).toEqual('');
+  });
+
+  it('should handle strings with spaces', () => {
+    expect(formatCnpj(' 01234567890123 ')).toEqual('01.234.567/8901-23');
+    expect(formatCnpj('01234567890123 ')).toEqual('01.234.567/8901-23');
+    expect(formatCnpj(' 01234567890123')).toEqual('01.234.567/8901-23');
+  });
+
+  it('should handle CNPJ with non-digit characters', () => {
+    expect(formatCnpj('01a234567890123')).toEqual('01a234567890123');
+    expect(formatCnpj('0123456789012a')).toEqual('0123456789012a');
+  });
+
+  it('should return empty string for empty input', () => {
+    expect(formatCnpj('')).toEqual('');
   });
 });

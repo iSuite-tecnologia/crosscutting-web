@@ -8,8 +8,6 @@ describe('formatDateTime', () => {
   });
 
   it('should return the formatted date', () => {
-    expect(formatDateTime('2023-04-18T17:33:19.922')).toBe(
-      '18/04/2023, 17:33:19'
-    );
+    expect(formatDateTime('2023-04-18T17:33:19.922')).toBe('18/04/2023, 17:33:19');
   });
 });

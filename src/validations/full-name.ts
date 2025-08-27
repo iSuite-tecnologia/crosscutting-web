@@ -1,17 +1,10 @@
 /**
  * Faz a validação se o nome contém sobrenome
- * @param value - Valor para ser verificado
- * @returns Uma mensagem em caso de erro ou true como valor verificado
- * @example
  *
- * const value = validateEmail('Anderson Saraiva');
- * console.log(value); // true
+ * @param value - Valor para ser verificado
+ * @returns true se válido, ou a mensagem de erro se inválido
  */
-
-export const validateFullName = (
-  value: any,
-  message: string
-): string | boolean => {
+export const validateFullName = (value: any, message: string): string | boolean => {
   const REGEX = /\w+\s\w+(\s\w+)*/;
 
   if (!value) return false;

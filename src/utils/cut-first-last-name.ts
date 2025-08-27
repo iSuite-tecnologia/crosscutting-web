@@ -1,13 +1,9 @@
 /**
  * Corta o nome para exibir somente o primeiro e último nome
+ *
  * @param value - Valor para ser formatado
  * @returns A string formatada
- * @example
- *
- * const value = cutFirstLastName('Anderson Saraiva Lima');
- * console.log(value); // 'Anderson Lima'
  */
-
 export const cutFirstLastName = (value: string | null | undefined): string => {
   if (!value) return '';
 

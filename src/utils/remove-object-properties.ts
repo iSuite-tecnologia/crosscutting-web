@@ -1,13 +1,8 @@
 /**
  * Cria um novo objeto sem as propriedades passadas
- * @returns novo objeto
- * @example
  *
- * let params = { page: 1, take: 10, orderDesc: 'asc' };
- * const value = objectWithoutProperties(params, ['orderDesc']);
- * console.log(value); // { page: 1, take: 10 }
+ * @returns novo objeto
  */
-
 export const objectWithoutProperties = (obj: any, keys: string[]) => {
   const target: any = {};
 
