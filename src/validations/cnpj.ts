@@ -1,75 +1,52 @@
 /**
- * Faz a validação de um CNPJ
- * @param value - Valor para ser verificado
- * @returns Uma mensagem em caso de erro ou true como valor verificado
- * @example
+ * Valida um CNPJ brasileiro.
  *
- * const value = validateCnpj('86294203000153');
- * console.log(value); // true
+ * @param value - CNPJ a ser validado (string, pode estar formatado)
+ * @param message - Mensagem de erro a ser retornada em caso de CNPJ inválido
+ * @returns true se válido, ou a mensagem de erro se inválido
  */
-
 export const validateCnpj = (value: any, message: string): string | boolean => {
-  if (value === null || value === undefined || value === '') return false;
+  if (!value) return true;
 
-  value = value.replace(/-|\.|\//g, '');
+  // Remove caracteres não numéricos
+  const clean = String(value).replace(/[.\-/]/g, '');
 
-  if (!/^[0-9]+$/.test(value)) return message;
+  // Verifica se tem 14 dígitos numéricos
+  if (!/^\d{14}$/.test(clean)) return message;
 
-  if (
-    value.length !== 14 ||
-    value === '00000000000000' ||
-    value === '11111111111111' ||
-    value === '22222222222222' ||
-    value === '33333333333333' ||
-    value === '44444444444444' ||
-    value === '55555555555555' ||
-    value === '66666666666666' ||
-    value === '77777777777777' ||
-    value === '88888888888888' ||
-    value === '99999999999999'
-  ) {
-    return message;
-  }
+  // CNPJs bloqueados (sequências repetidas)
+  const blocked = [
+    '00000000000000',
+    '11111111111111',
+    '22222222222222',
+    '33333333333333',
+    '44444444444444',
+    '55555555555555',
+    '66666666666666',
+    '77777777777777',
+    '88888888888888',
+    '99999999999999'
+  ];
+  if (blocked.includes(clean)) return message;
 
-  let total = 0;
-  let index = 2;
-  let leftover = 0;
-  let verifyingDigit = 0;
-  let counter = 0;
+  // Função auxiliar para calcular dígito verificador
+  const calcDigit = (base: string, length: number) => {
+    let sum = 0;
+    let weight = 2;
+    for (let i = length - 1; i >= 0; i--) {
+      sum += Number(base[i]) * weight;
+      weight = weight === 9 ? 2 : weight + 1;
+    }
+    const mod = sum % 11;
+    return mod < 2 ? 0 : 11 - mod;
+  };
 
-  for (counter = -12; counter <= -1; counter++) {
-    total = total + Math.abs(value.substr(Math.abs(counter) - 1, 1)) * index;
-    index === 9 ? (index = 2) : (index = index + 1);
-  }
+  // Valida os dois dígitos verificadores
+  const base = clean.slice(0, 12);
+  const digit1 = calcDigit(base, 12);
+  const digit2 = calcDigit(base + digit1, 13);
 
-  leftover = total % 11;
-
-  leftover === 0 || leftover === 1
-    ? (verifyingDigit = 0)
-    : (verifyingDigit = 11 - leftover);
-
-  if ('' + value.substr(12, 1) !== '' + verifyingDigit) {
-    return message;
-  }
-
-  index = 2;
-  total = 0;
-  leftover = 0;
-  verifyingDigit = 0;
-
-  for (counter = -13; counter <= -1; counter++) {
-    total = total + Math.abs(value.substr(Math.abs(counter) - 1, 1)) * index;
-
-    index === 9 ? (index = 2) : (index = index + 1);
-  }
-
-  leftover = total % 11;
-
-  leftover === 0 || leftover === 1
-    ? (verifyingDigit = 0)
-    : (verifyingDigit = 11 - leftover);
-
-  if ('' + value.substr(13, 1) !== '' + verifyingDigit) {
+  if (Number(clean[12]) !== digit1 || Number(clean[13]) !== digit2) {
     return message;
   }
 

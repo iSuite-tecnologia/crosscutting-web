@@ -7,30 +7,22 @@ describe('validateCnpj', () => {
   });
 
   it('passing null value should return null', () => {
-    expect(validateCnpj(null, message)).toEqual(false);
+    expect(validateCnpj(null, message)).toEqual(true);
   });
 
   it('passing equal values, should return an error message', () => {
-    expect(validateCnpj('11111111111111', message)).toEqual(
-      'Valor do campo não é válido.'
-    );
+    expect(validateCnpj('11111111111111', message)).toEqual(message);
   });
 
   it('passing invalid value, should return an error message', () => {
-    expect(validateCnpj('12345678901234', message)).toEqual(
-      'Valor do campo não é válido.'
-    );
+    expect(validateCnpj('12345678901234', message)).toEqual(message);
   });
 
   it('passing letters, should return an error message', () => {
-    expect(validateCnpj('123abc78901234', message)).toEqual(
-      'Valor do campo não é válido.'
-    );
+    expect(validateCnpj('123abc78901234', message)).toEqual(message);
   });
 
   it('should return an error message when the digit value is not valid', () => {
-    expect(validateCnpj('86294203000199', message)).toEqual(
-      'Valor do campo não é válido.'
-    );
+    expect(validateCnpj('86294203000199', message)).toEqual(message);
   });
 });

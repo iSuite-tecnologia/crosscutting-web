@@ -3,6 +3,10 @@ import { validateZipcode } from '../../src/validations/zipcode';
 describe('validateZipcode', () => {
   const message = 'Invalid zipcode';
 
+  it('passing null value should return null', () => {
+    expect(validateZipcode(null, message)).toEqual(true);
+  });
+
   it('should return true for a valid zipcode in the format "12345-678"', () => {
     const validZipcode = '12345-678';
     expect(validateZipcode(validZipcode, message)).toBe(true);

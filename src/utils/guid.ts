@@ -1,15 +1,10 @@
 /**
  * Cria um guid aleatório
- * @returns um guid aleatório
- * @example
  *
- * const value = randomId();
- * console.log(value); // '49783894-37cf-449f-9873-2820aa21622e'
+ * @returns um guid aleatório
  */
-
 export const randomId = (): string => {
-  const S4 = () =>
-    (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+  const S4 = () => (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
 
   return `${S4() + S4()}-${S4()}-${S4()}-${S4()}-${S4()}${S4()}${S4()}`;
 };

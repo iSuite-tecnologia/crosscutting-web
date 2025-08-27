@@ -1,13 +1,8 @@
 /**
  * Formata bytes em um formato legível para humanos com unidades apropriadas (Bytes, KB, MB, GB)
+ *
  * @param value - O número de bytes para formatar
  * @returns A string formatada
- * @example
- *
- * ```typescript
- * const value = formatBytes('1024');
- * console.log(value); // '1.00 KB'
- * ```
  */
 
 export const formatBytes = (value: number): string => {

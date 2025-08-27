@@ -3,14 +3,7 @@
  *
  * @param value número a ser formatado
  * @returns valor formatado
- * @example
- *
- * ```typescript
- * const value = formatDays(2);
- * console.log(value); // '2 dias'
- * ```
  */
-
 export const formatDays = (value: number | null | undefined): string => {
   if (value === null || value === undefined) return '';
 

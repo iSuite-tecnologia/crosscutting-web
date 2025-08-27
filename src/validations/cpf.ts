@@ -1,77 +1,52 @@
 /**
- * Faz a validação de um CPF
- * @param value - Valor para ser verificado
- * @returns Uma mensagem em caso de erro ou true como valor verificado
- * @example
+ * Valida um CPF brasileiro.
  *
- * const value = validateCpf('85624945000');
- * console.log(value); // true
+ * @param value - CPF a ser validado (string, pode estar formatado)
+ * @param message - Mensagem de erro a ser retornada em caso de CPF inválido
+ * @returns true se válido, ou a mensagem de erro se inválido
  */
-
 export const validateCpf = (value: any, message: string): string | boolean => {
-  if (value === null || value === undefined || value === '') return false;
+  if (!value) return true;
 
-  value = value.replace(/-|\./g, '');
+  // Remove pontos e traços
+  const clean = String(value).replace(/[.-]/g, '');
 
-  if (!/^[0-9]+$/.test(value)) return message;
+  // Deve conter apenas números e ter 11 dígitos
+  if (!/^\d{11}$/.test(clean)) return message;
 
-  if (
-    value.length !== 11 ||
-    value === '191' ||
-    value === '00000000000' ||
-    value === '11111111111' ||
-    value === '22222222222' ||
-    value === '33333333333' ||
-    value === '44444444444' ||
-    value === '55555555555' ||
-    value === '66666666666' ||
-    value === '77777777777' ||
-    value === '88888888888' ||
-    value === '99999999999'
-  ) {
-    return message;
+  // CPFs bloqueados ou inválidos
+  const blocked = [
+    '00000000000',
+    '11111111111',
+    '22222222222',
+    '33333333333',
+    '44444444444',
+    '55555555555',
+    '66666666666',
+    '77777777777',
+    '88888888888',
+    '99999999999',
+    '191'
+  ];
+  if (blocked.includes(clean)) return message;
+
+  // Validação do primeiro dígito verificador
+  let sum = 0;
+  for (let i = 0; i < 9; i++) {
+    sum += Number(clean[i]) * (10 - i);
   }
+  let firstDigit = sum % 11;
+  firstDigit = firstDigit < 2 ? 0 : 11 - firstDigit;
+  if (Number(clean[9]) !== firstDigit) return message;
 
-  let index = 2;
-  let total = 0;
-  let leftover = 0;
-  let verifyingDigit = 0;
-  let counter;
-
-  for (counter = -9; counter <= -1; counter++) {
-    total = total + Math.abs(value.substr(Math.abs(counter) - 1, 1) * index);
-    index = index + 1;
+  // Validação do segundo dígito verificador
+  sum = 0;
+  for (let i = 0; i < 10; i++) {
+    sum += Number(clean[i]) * (11 - i);
   }
-
-  leftover = total % 11;
-
-  leftover === 0 || leftover === 1
-    ? (verifyingDigit = 0)
-    : (verifyingDigit = 11 - leftover);
-
-  if ('' + value.substr(9, 1) != '' + verifyingDigit) {
-    return message;
-  }
-
-  index = 2;
-  total = 0;
-  leftover = 0;
-  verifyingDigit = 0;
-
-  for (counter = -10; counter <= -1; counter++) {
-    total = total + Math.abs(value.substr(Math.abs(counter) - 1, 1) * index);
-    index = index + 1;
-  }
-
-  leftover = total % 11;
-
-  leftover === 0 || leftover === 1
-    ? (verifyingDigit = 0)
-    : (verifyingDigit = 11 - leftover);
-
-  if ('' + value.substr(10, 1) !== '' + verifyingDigit) {
-    return message;
-  }
+  let secondDigit = sum % 11;
+  secondDigit = secondDigit < 2 ? 0 : 11 - secondDigit;
+  if (Number(clean[10]) !== secondDigit) return message;
 
   return true;
 };

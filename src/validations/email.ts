@@ -1,13 +1,9 @@
 /**
  * Faz a validação de um email
- * @param value - Valor para ser verificado
- * @returns Uma mensagem em caso de erro ou true como valor verificado
- * @example
  *
- * const value = validateEmail('email@teste.com');
- * console.log(value); // true
+ * @param value - Valor para ser verificado
+ * @returns true se válido, ou a mensagem de erro se inválido
  */
-
 export const validateEmail = (
   value: string | null | undefined,
   message: string

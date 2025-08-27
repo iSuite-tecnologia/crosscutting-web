@@ -7,13 +7,7 @@
  *
  * @param {string} name - A sequência de nomes a ser normalizada.
  * @returns {string} - O nome normalizado.
- *
- * @example
- * console.log(normalizeName('anderson SARAIVA')); // 'Anderson Saraiva'
- *
- * console.log(normalizeName('  anderson   Saraiva  ')); // 'Anderson Saraiva'
  */
-
 export const normalizeName = (name: string): string => {
   return name
     .trim()
